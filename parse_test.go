@@ -1,4 +1,4 @@
-package shuntingYard
+package shuntingyard
 
 import "testing"
 

@@ -1,10 +1,10 @@
-package shuntingYard
+package shuntingyard
 
 import "testing"
 
 func TestEvaluate(t *testing.T) {
 	var tokens []*RPNToken
-	var expected, got int
+	var expected, got float32
 	var err error
 
 	tokens = []*RPNToken{NewRPNOperandToken(1), NewRPNOperandToken(32), NewRPNOperandToken(3), NewRPNOperatorToken("-"), NewRPNOperatorToken("*")}
@@ -22,7 +22,7 @@ func TestEvaluate(t *testing.T) {
 		panic(err)
 	}
 
-	expected = 1
+	expected = 0.5
 	got, err = Evaluate(tokens)
 	if err != nil {
 		panic(err)

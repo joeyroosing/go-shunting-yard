@@ -1,4 +1,4 @@
-package shuntingYard
+package shuntingyard
 
 import (
 	"errors"
@@ -103,9 +103,9 @@ func Parse(tokens []string) ([]*RPNToken, error) {
 
 // tryGetOperand determines whether a given string is an operand, if it is, an RPN operand token will be returned, otherwise nil.
 func tryGetOperand(str string) *RPNToken {
-	value, err := strconv.Atoi(str)
+	value, err := strconv.ParseFloat(str, 32)
 	if err != nil {
 		return nil
 	}
-	return NewRPNOperandToken(value)
+	return NewRPNOperandToken(float32(value))
 }

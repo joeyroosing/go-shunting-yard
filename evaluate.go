@@ -1,4 +1,4 @@
-package shuntingYard
+package shuntingyard
 
 import (
 	"errors"
@@ -6,16 +6,16 @@ import (
 )
 
 // Evaluate evaluates a list of RPNTokens and returns calculated value.
-func Evaluate(tokens []*RPNToken) (int, error) {
+func Evaluate(tokens []*RPNToken) (float32, error) {
 	if tokens == nil {
 		return 0, errors.New("tokens cannot be nil")
 	}
 
-	var stack []int
+	var stack []float32
 	for _, token := range tokens {
 		// push all operands to the stack
 		if token.Type == RPNTokenTypeOperand {
-			val := token.Value.(int)
+			val := token.Value.(float32)
 			stack = append(stack, val)
 		} else {
 			// execute current operator
@@ -40,7 +40,7 @@ func Evaluate(tokens []*RPNToken) (int, error) {
 }
 
 // executes an operator
-func evaluateOperator(oper string, a, b int) (int, error) {
+func evaluateOperator(oper string, a, b float32) (float32, error) {
 	switch oper {
 	case "+":
 		return a + b, nil
@@ -51,7 +51,7 @@ func evaluateOperator(oper string, a, b int) (int, error) {
 	case "/":
 		return a / b, nil
 	case "^":
-		return int(math.Pow(float64(a), float64(b))), nil
+		return float32(math.Pow(float64(a), float64(b))), nil
 	default:
 		return 0, errors.New("Unknown operator: " + oper)
 	}
